@@ -174,14 +174,17 @@ class _SecondScreenState extends State<SecondScreen>
                             onTap: () {
                               Navigator.pop(context);
                             },
-                            child: LatoText(
-                              '← ${widget.mainTitle}',
-                              30,
-                              Colors.white,
+                            child: SizedBox(
+                              height: height * 0.082,
+                              child: LatoText(
+                                '← ${widget.mainTitle}',
+                                30,
+                                Colors.white,
+                              ),
                             ),
                           ),
                           SizedBox(
-                            height: 10,
+                            height: height * 0.01,
                           ),
                           SlideTransition(
                             position: _animation,
@@ -204,7 +207,7 @@ class _SecondScreenState extends State<SecondScreen>
                   SlideTransition(
                     position: _animation,
                     child: Container(
-                      height: 50,
+                      height: height * 0.07,
                       child: ListView.separated(
                           padding: const EdgeInsets.only(left: 20.0),
                           separatorBuilder: (context, i) {
@@ -226,16 +229,28 @@ class _SecondScreenState extends State<SecondScreen>
                                     children: [
                                       SvgPicture.asset(
                                         'assets/svgs/surface1.svg',
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                                0.05,
                                         color: i == 1
                                             ? Colors.white
                                             : Colors.black,
                                       ),
-                                      LatoText(
-                                          'Main Light',
-                                          14,
-                                          (i == 1
-                                              ? Colors.white
-                                              : Color.fromRGBO(0, 45, 93, 1))),
+                                      SizedBox(
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                                0.18,
+                                        height: height * 0.07 / 2,
+                                        child: Center(
+                                          child: LatoText(
+                                              'Main Light',
+                                              14,
+                                              (i == 1
+                                                  ? Colors.white
+                                                  : Color.fromRGBO(
+                                                      0, 45, 93, 1))),
+                                        ),
+                                      ),
                                     ],
                                   ),
                                 ),
@@ -247,7 +262,7 @@ class _SecondScreenState extends State<SecondScreen>
                                       Radius.circular(15),
                                     )),
                                 height: 40,
-                                width: 150,
+                                width: MediaQuery.of(context).size.width * 0.4,
                               ),
                             );
                           }),
@@ -259,218 +274,246 @@ class _SecondScreenState extends State<SecondScreen>
                   Expanded(
                     child: Stack(
                       children: [
-                        Hero(
-                          tag: 'container',
-                          child: Material(
-                            borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(40),
-                                topRight: Radius.circular(40)),
-                            child: Container(
-                              width: MediaQuery.of(context).size.width,
-                              padding:
-                                  EdgeInsets.only(top: 30, right: 20, left: 20),
-                              decoration: BoxDecoration(
-                                  color: Color.fromRGBO(246, 248, 251, 1),
-                                  borderRadius: BorderRadius.only(
-                                      topLeft: Radius.circular(40),
-                                      topRight: Radius.circular(40))),
-                              child: Column(
-                                mainAxisSize: MainAxisSize.max,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  LatoText('Intensity', 20,
-                                      Color.fromRGBO(0, 45, 93, 1)),
-                                  Padding(
-                                    padding: const EdgeInsets.only(top: 15.0),
-                                    child: Row(
-                                      children: [
-                                        SvgPicture.asset(
-                                          'assets/svgs/solution2.svg',
-                                        ),
-                                        Expanded(
-                                          child: SfSliderTheme(
-                                            data: SfRangeSliderThemeData(
-                                                activeTrackColor: Colors.yellow,
-                                                thumbColor: Colors.white,
-                                                thumbStrokeColor:
-                                                    Colors.yellowAccent,
-                                                inactiveTrackColor: Colors.grey
-                                                    .withOpacity(0.1)),
-                                            child: SfSlider(
-                                              min: 0.0,
-                                              max: 100.0,
-                                              value: _currentSliderValue,
-                                              interval: 20,
-                                              showTicks: true,
-                                              minorTicksPerInterval: 0,
-                                              onChanged: (dynamic value) {
-                                                if (value < 2) {
-                                                  setState(() {
-                                                    updateBulbColor(
-                                                        Colors.black);
-                                                    fillOpacity = 1;
-                                                  });
-                                                } else {
-                                                  setState(() {
-                                                    updateBulbColor(
-                                                        currentColor);
-                                                    fillOpacity = value / 100;
-                                                    _currentSliderValue = value;
-                                                  });
-                                                }
-                                              },
-                                            ),
+                        Align(
+                          alignment: Alignment.bottomCenter,
+                          child: Hero(
+                            tag: 'container',
+                            child: Material(
+                              borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(40),
+                                  topRight: Radius.circular(40)),
+                              child: Container(
+                                width: MediaQuery.of(context).size.width,
+                                padding: EdgeInsets.only(
+                                    top: 30, right: 20, left: 20),
+                                decoration: BoxDecoration(
+                                    color: Color.fromRGBO(246, 248, 251, 1),
+                                    borderRadius: BorderRadius.only(
+                                        topLeft: Radius.circular(40),
+                                        topRight: Radius.circular(40))),
+                                child: SingleChildScrollView(
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.max,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      SizedBox(
+                                        height: height * 0.03,
+                                        child: LatoText('Intensity', 20,
+                                            Color.fromRGBO(0, 45, 93, 1)),
+                                      ),
+                                      Padding(
+                                        padding:
+                                            const EdgeInsets.only(top: 15.0),
+                                        child: SizedBox(
+                                          height: height * 0.04,
+                                          child: Row(
+                                            children: [
+                                              SvgPicture.asset(
+                                                'assets/svgs/solution2.svg',
+                                              ),
+                                              Expanded(
+                                                child: SfSliderTheme(
+                                                  data: SfRangeSliderThemeData(
+                                                      activeTrackColor:
+                                                          Colors.yellow,
+                                                      thumbColor: Colors.white,
+                                                      thumbStrokeColor:
+                                                          Colors.yellowAccent,
+                                                      inactiveTrackColor: Colors
+                                                          .grey
+                                                          .withOpacity(0.1)),
+                                                  child: SfSlider(
+                                                    min: 0.0,
+                                                    max: 100.0,
+                                                    value: _currentSliderValue,
+                                                    interval: 20,
+                                                    showTicks: true,
+                                                    minorTicksPerInterval: 0,
+                                                    onChanged: (dynamic value) {
+                                                      if (value < 2) {
+                                                        setState(() {
+                                                          updateBulbColor(
+                                                              Colors.black);
+                                                          fillOpacity = 1;
+                                                        });
+                                                      } else {
+                                                        setState(() {
+                                                          updateBulbColor(
+                                                              currentColor);
+                                                          fillOpacity =
+                                                              value / 100;
+                                                          _currentSliderValue =
+                                                              value;
+                                                        });
+                                                      }
+                                                    },
+                                                  ),
+                                                ),
+                                              ),
+                                              SvgPicture.asset(
+                                                'assets/svgs/solution1.svg',
+                                                color: _currentSliderValue > 10
+                                                    ? Color.fromRGBO(
+                                                        255, 216, 43, 1)
+                                                    : Colors.grey[400],
+                                              ),
+                                            ],
                                           ),
                                         ),
-                                        SvgPicture.asset(
-                                          'assets/svgs/solution1.svg',
-                                          color: _currentSliderValue > 10
-                                              ? Color.fromRGBO(255, 216, 43, 1)
-                                              : Colors.grey[400],
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 25,
-                                  ),
-                                  LatoText('Colors', 20,
-                                      Color.fromRGBO(0, 45, 93, 1)),
-                                  Padding(
-                                    padding: const EdgeInsets.only(top: 15.0),
-                                    child: Container(
-                                      height: 50,
-                                      // color: Colors.red,
-                                      child: ListView.separated(
-                                          scrollDirection: Axis.horizontal,
-                                          itemBuilder: (context, i) {
-                                            if (i == 6) {
-                                              return CircleAvatar(
-                                                radius: 17,
-                                                child: Center(
-                                                  child: SvgPicture.asset(
-                                                    'assets/svgs/+.svg',
-                                                  ),
-                                                ),
-                                                backgroundColor: Colors.white,
-                                              );
-                                            } else {
-                                              return SlideTransition(
-                                                position: _colorAnimation,
-                                                child: GestureDetector(
-                                                  onTap: () {
-                                                    setState(() {
-                                                      currentColor =
-                                                          colorPallete[i];
-                                                    });
-                                                    updateBulbColor(
-                                                        colorPallete[i]);
-                                                  },
-                                                  child: CircleAvatar(
+                                      ),
+                                      SizedBox(height: height * 0.03),
+                                      SizedBox(
+                                        height: height * 0.03,
+                                        child: LatoText('Colors', 20,
+                                            Color.fromRGBO(0, 45, 93, 1)),
+                                      ),
+                                      Padding(
+                                        padding:
+                                            const EdgeInsets.only(top: 15.0),
+                                        child: Container(
+                                          height: height * 0.04,
+                                          // color: Colors.red,
+                                          child: ListView.separated(
+                                              scrollDirection: Axis.horizontal,
+                                              itemBuilder: (context, i) {
+                                                if (i == 6) {
+                                                  return CircleAvatar(
                                                     radius: 17,
+                                                    child: Center(
+                                                      child: SvgPicture.asset(
+                                                        'assets/svgs/+.svg',
+                                                      ),
+                                                    ),
                                                     backgroundColor:
-                                                        colorPallete[i],
-                                                  ),
+                                                        Colors.white,
+                                                  );
+                                                } else {
+                                                  return SlideTransition(
+                                                    position: _colorAnimation,
+                                                    child: GestureDetector(
+                                                      onTap: () {
+                                                        setState(() {
+                                                          currentColor =
+                                                              colorPallete[i];
+                                                        });
+                                                        updateBulbColor(
+                                                            colorPallete[i]);
+                                                      },
+                                                      child: CircleAvatar(
+                                                        radius: 17,
+                                                        backgroundColor:
+                                                            colorPallete[i],
+                                                      ),
+                                                    ),
+                                                  );
+                                                }
+                                              },
+                                              separatorBuilder: (context, i) {
+                                                return SizedBox(
+                                                  width: MediaQuery.of(context)
+                                                          .size
+                                                          .width *
+                                                      0.02,
+                                                );
+                                              },
+                                              itemCount: 7),
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        height: height * 0.03,
+                                      ),
+                                      SizedBox(
+                                        height: height * 0.03,
+                                        child: LatoText('Scenes', 20,
+                                            Color.fromRGBO(0, 45, 93, 1)),
+                                      ),
+                                      SizedBox(
+                                        height: height * 0.03,
+                                      ),
+                                      Container(
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            SceneContainer(
+                                                LinearGradient(
+                                                  begin: Alignment.topLeft,
+                                                  end: Alignment.bottomRight,
+                                                  colors: <Color>[
+                                                    Color.fromRGBO(
+                                                        255, 155, 156, 1),
+                                                    Color.fromRGBO(
+                                                        254, 181, 146, 1),
+                                                  ],
                                                 ),
-                                              );
-                                            }
-                                          },
-                                          separatorBuilder: (context, i) {
-                                            return SizedBox(
-                                              width: 18,
-                                            );
-                                          },
-                                          itemCount: 7),
-                                    ),
+                                                'assets/svgs/surface2.svg',
+                                                'Birthday',
+                                                false,
+                                                _animation2),
+                                            SceneContainer(
+                                                LinearGradient(
+                                                  begin: Alignment.topLeft,
+                                                  end: Alignment.bottomRight,
+                                                  colors: <Color>[
+                                                    Color.fromRGBO(
+                                                        167, 147, 235, 1),
+                                                    Color.fromRGBO(
+                                                        207, 147, 234, 1),
+                                                  ],
+                                                ),
+                                                'assets/svgs/surface2.svg',
+                                                'Party',
+                                                true,
+                                                _animation2),
+                                          ],
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        height: height * 0.03,
+                                      ),
+                                      Container(
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            SceneContainer(
+                                                LinearGradient(
+                                                  begin: Alignment.topLeft,
+                                                  end: Alignment.bottomRight,
+                                                  colors: <Color>[
+                                                    Color.fromRGBO(
+                                                        147, 204, 235, 1),
+                                                    Color.fromRGBO(
+                                                        147, 216, 235, 1),
+                                                  ],
+                                                ),
+                                                'assets/svgs/surface2.svg',
+                                                'Relax',
+                                                false,
+                                                _animation2),
+                                            SceneContainer(
+                                                LinearGradient(
+                                                  begin: Alignment.topLeft,
+                                                  end: Alignment.bottomRight,
+                                                  colors: <Color>[
+                                                    Color.fromRGBO(
+                                                        138, 221, 148, 1),
+                                                    Color.fromRGBO(
+                                                        184, 234, 146, 1),
+                                                  ],
+                                                ),
+                                                'assets/svgs/surface2.svg',
+                                                'Fun',
+                                                true,
+                                                _animation2),
+                                          ],
+                                        ),
+                                      ),
+                                      SizedBox(height: height * 0.03),
+                                    ],
                                   ),
-                                  SizedBox(
-                                    height: 25,
-                                  ),
-                                  LatoText('Scenes', 20,
-                                      Color.fromRGBO(0, 45, 93, 1)),
-                                  SizedBox(
-                                    height: 20,
-                                  ),
-                                  Container(
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        SceneContainer(
-                                            LinearGradient(
-                                              begin: Alignment.topLeft,
-                                              end: Alignment.bottomRight,
-                                              colors: <Color>[
-                                                Color.fromRGBO(
-                                                    255, 155, 156, 1),
-                                                Color.fromRGBO(
-                                                    254, 181, 146, 1),
-                                              ],
-                                            ),
-                                            'assets/svgs/surface2.svg',
-                                            'Birthday',
-                                            false,
-                                            _animation2),
-                                        SceneContainer(
-                                            LinearGradient(
-                                              begin: Alignment.topLeft,
-                                              end: Alignment.bottomRight,
-                                              colors: <Color>[
-                                                Color.fromRGBO(
-                                                    167, 147, 235, 1),
-                                                Color.fromRGBO(
-                                                    207, 147, 234, 1),
-                                              ],
-                                            ),
-                                            'assets/svgs/surface2.svg',
-                                            'Party',
-                                            true,
-                                            _animation2),
-                                      ],
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 25,
-                                  ),
-                                  Container(
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        SceneContainer(
-                                            LinearGradient(
-                                              begin: Alignment.topLeft,
-                                              end: Alignment.bottomRight,
-                                              colors: <Color>[
-                                                Color.fromRGBO(
-                                                    147, 204, 235, 1),
-                                                Color.fromRGBO(
-                                                    147, 216, 235, 1),
-                                              ],
-                                            ),
-                                            'assets/svgs/surface2.svg',
-                                            'Relax',
-                                            false,
-                                            _animation2),
-                                        SceneContainer(
-                                            LinearGradient(
-                                              begin: Alignment.topLeft,
-                                              end: Alignment.bottomRight,
-                                              colors: <Color>[
-                                                Color.fromRGBO(
-                                                    138, 221, 148, 1),
-                                                Color.fromRGBO(
-                                                    184, 234, 146, 1),
-                                              ],
-                                            ),
-                                            'assets/svgs/surface2.svg',
-                                            'Fun',
-                                            true,
-                                            _animation2),
-                                      ],
-                                    ),
-                                  )
-                                ],
+                                ),
                               ),
                             ),
                           ),

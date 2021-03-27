@@ -9,8 +9,10 @@ class BottomBar extends StatefulWidget {
 class _BottomBarState extends State<BottomBar> {
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+
     return Container(
-        height: 60,
+        height: MediaQuery.of(context).size.height * 0.09,
         decoration: BoxDecoration(
           color: Colors.white,
           boxShadow: [
@@ -27,19 +29,19 @@ class _BottomBarState extends State<BottomBar> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Padding(
-              padding: const EdgeInsets.only(left: 34, right: 34),
+              padding: EdgeInsets.only(left: width * 0.08, right: width * 0.08),
               child: SvgPicture.asset(
                 'assets/svgs/bulb.svg',
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 34, right: 34),
+              padding: EdgeInsets.only(left: width * 0.08, right: width * 0.08),
               child: SvgPicture.asset(
                 'assets/svgs/homebottom.svg',
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 34, right: 34),
+              padding: EdgeInsets.only(left: width * 0.08, right: width * 0.08),
               child: SvgPicture.asset(
                 'assets/svgs/settingbottom.svg',
               ),

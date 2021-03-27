@@ -16,10 +16,10 @@ class RoomContainer extends StatefulWidget {
 class _RoomContainerState extends State<RoomContainer> {
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
     return GridTile(
       child: GestureDetector(
         onTap: () async {
-         
           await Navigator.of(context).push(
             PageRouteBuilder(
               transitionDuration: Duration(milliseconds: 400),
@@ -32,7 +32,7 @@ class _RoomContainerState extends State<RoomContainer> {
 
                 return FadeTransition(
                   opacity: curvedAnimation,
-                  child: SecondScreen( widget.title.replaceFirst(' ', '\n')),
+                  child: SecondScreen(widget.title.replaceFirst(' ', '\n')),
                 );
               },
             ),
@@ -41,18 +41,23 @@ class _RoomContainerState extends State<RoomContainer> {
         child: Padding(
           padding: const EdgeInsets.all(5.0),
           child: new Container(
-            padding: EdgeInsets.all(20),
+            padding: EdgeInsets.all(15),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SvgPicture.asset(widget.svgPath,
                     width: MediaQuery.of(context).size.width / 7),
                 Expanded(child: Container()),
-                LatoText(widget.title, 20, Color.fromRGBO(0, 45, 93, 1)),
+                SizedBox(
+                    height: height * 0.025,
+                    child: LatoText(
+                        widget.title, 20, Color.fromRGBO(0, 45, 93, 1))),
                 Padding(
                     padding: const EdgeInsets.only(top: 4.0),
-                    child:
-                        LatoText('${widget.lights} Lights', 12, Colors.orange)),
+                    child: SizedBox(
+                        height: height * 0.023,
+                        child: LatoText(
+                            '${widget.lights} Lights', 12, Colors.orange))),
               ],
             ),
             decoration: BoxDecoration(

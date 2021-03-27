@@ -19,39 +19,44 @@ class _SceneContainerState extends State<SceneContainer>
     with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
     return widget.animate
         ? SlideTransition(
             position: widget.animator,
             child: Container(
-              height: 60,
+              height: height * 0.08,
               child: Row(
                 children: [
                   Container(
                       width: MediaQuery.of(context).size.width / 5,
                       child: SvgPicture.asset(widget.svgPath)),
-                  LatoText(widget.title, 15, Colors.white),
+                  SizedBox(
+                      height: height * 0.03,
+                      child: LatoText(widget.title, 15, Colors.white)),
                 ],
               ),
               decoration: BoxDecoration(
                   gradient: widget.gradient,
                   borderRadius: BorderRadius.all(Radius.circular(15))),
-              width: MediaQuery.of(context).size.width / 2 - 35,
+              width: MediaQuery.of(context).size.width * 0.4,
             ),
           )
         : Container(
-            height: 60,
+            height: height * 0.08,
             child: Row(
               children: [
                 Container(
                     width: MediaQuery.of(context).size.width / 5,
                     child: SvgPicture.asset(widget.svgPath)),
-                LatoText(widget.title, 15, Colors.white),
+                SizedBox(
+                    height: height * 0.03,
+                    child: LatoText(widget.title, 15, Colors.white)),
               ],
             ),
             decoration: BoxDecoration(
                 gradient: widget.gradient,
                 borderRadius: BorderRadius.all(Radius.circular(15))),
-            width: MediaQuery.of(context).size.width / 2 - 35,
+            width: MediaQuery.of(context).size.width * 0.4,
           );
   }
 }

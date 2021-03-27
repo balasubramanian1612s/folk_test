@@ -95,15 +95,18 @@ class _ControlPanelPageState extends State<ControlPanelPage>
                                   mainAxisSize: MainAxisSize.max,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    LatoText('All Rooms', 20,
-                                        Color.fromRGBO(0, 45, 93, 1)),
                                     SizedBox(
-                                      height: 20,
+                                      height: height * 0.03,
+                                      child: LatoText('All Rooms', 20,
+                                          Color.fromRGBO(0, 45, 93, 1)),
+                                    ),
+                                    SizedBox(
+                                      height: height * 0.02,
                                     ),
                                     Expanded(
                                       // color: Colors.orange,
                                       child: GridView.count(
-                                        physics: NeverScrollableScrollPhysics(),
+                                        // physics: NeverScrollableScrollPhysics(),
                                         mainAxisSpacing: 10,
                                         crossAxisSpacing: 10,
                                         shrinkWrap: true,
