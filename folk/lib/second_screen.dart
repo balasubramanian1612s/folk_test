@@ -518,6 +518,19 @@ class _SecondScreenState extends State<SecondScreen>
                             ),
                           ),
                         ),
+                        // Positioned(
+                        //     right: MediaQuery.of(context).size.width * 0.1,
+                        //     top: height * 0.005,
+                        //     child: Card(
+                        //       shape: CircleBorder(),
+                        //       elevation: 5,
+                        //       child: CircleAvatar(
+                        //         backgroundColor: Colors.white,
+                        //         child: SvgPicture.asset(
+                        //           'assets/svgs/Icon awesome-power-off.svg',
+                        //         ),
+                        //       ),
+                        //     )),
                       ],
                     ),
                   ),

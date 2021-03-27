@@ -28,17 +28,19 @@ class _SceneContainerState extends State<SceneContainer>
               child: Row(
                 children: [
                   Container(
-                      width: MediaQuery.of(context).size.width / 5,
+                      width: MediaQuery.of(context).size.width / 6,
                       child: SvgPicture.asset(widget.svgPath)),
                   SizedBox(
                       height: height * 0.03,
-                      child: LatoText(widget.title, 15, Colors.white)),
+                      child: Align(
+                          alignment: Alignment.center,
+                          child: LatoText(widget.title, 15, Colors.white))),
                 ],
               ),
               decoration: BoxDecoration(
                   gradient: widget.gradient,
                   borderRadius: BorderRadius.all(Radius.circular(15))),
-              width: MediaQuery.of(context).size.width * 0.4,
+              width: MediaQuery.of(context).size.width * 0.42,
             ),
           )
         : Container(
@@ -46,17 +48,19 @@ class _SceneContainerState extends State<SceneContainer>
             child: Row(
               children: [
                 Container(
-                    width: MediaQuery.of(context).size.width / 5,
+                    width: MediaQuery.of(context).size.width / 6,
                     child: SvgPicture.asset(widget.svgPath)),
                 SizedBox(
                     height: height * 0.03,
-                    child: LatoText(widget.title, 15, Colors.white)),
+                    child: Align(
+                        alignment: Alignment.center,
+                        child: LatoText(widget.title, 15, Colors.white))),
               ],
             ),
             decoration: BoxDecoration(
                 gradient: widget.gradient,
                 borderRadius: BorderRadius.all(Radius.circular(15))),
-            width: MediaQuery.of(context).size.width * 0.4,
+            width: MediaQuery.of(context).size.width * 0.42,
           );
   }
 }
